@@ -17,5 +17,9 @@ class GpuApplicationTests {
         int res = studentMapper.updateStudent(s1);
         System.out.println(res);
     }
+    @Test
+    public void test2(){
+        System.out.println("111");
+    }
 
 }
