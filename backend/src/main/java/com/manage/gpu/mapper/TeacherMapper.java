@@ -1,6 +1,7 @@
 package com.manage.gpu.mapper;
 
 
+import com.manage.gpu.entity.Student;
 import com.manage.gpu.entity.Teacher;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -46,5 +47,14 @@ public interface TeacherMapper {
     @Insert("INSERT INTO teacher (id, teacher_name, password, phone, email, account)\n" +
             "    VALUES(#{id},#{teacher_name},#{password},#{phone},#{email},#{account});")
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
-    Integer insertItem(Teacher teacher);
+    Integer insertTeacher(Teacher teacher);
+
+    /**
+     * 修改
+     * @param teacher
+     * @return
+     */
+    @Update("UPDATE Teacher SET teacher_name=#{teacher_name},password=#{password},phone=#{phone},email=#{email},account=#{account} WHERE id=#{id}")
+    @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
+    Integer updateTeacher(Teacher teacher);
 }
