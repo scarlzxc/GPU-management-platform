@@ -1,7 +1,7 @@
 package com.manage.gpu.entity;
 
-public class Admin {
-    private Long id;
+public class InsertAdminRequest {
+
     private String accounnt;
     private String password;
     private String email;
@@ -13,14 +13,6 @@ public class Admin {
 
     public void setAdmin_name(String admin_name) {
         this.admin_name = admin_name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getAccounnt() {

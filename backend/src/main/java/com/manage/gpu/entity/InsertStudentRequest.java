@@ -10,7 +10,6 @@ package com.manage.gpu.entity;
 public class InsertStudentRequest {
     private String student_name;
     private String password;
-    private String phone;
     private String email;
     private String teacher_name;
     private String account;
@@ -29,14 +28,6 @@ public class InsertStudentRequest {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getEmail() {

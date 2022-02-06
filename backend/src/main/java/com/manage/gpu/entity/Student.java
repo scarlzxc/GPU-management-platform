@@ -34,13 +34,6 @@ public class Student {
         this.password = password;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 
     public String getEmail() {
         return email;
@@ -69,7 +62,6 @@ public class Student {
     private String student_name;
 
     private String password;
-    private String phone;
     private String email;
     private long teacher_id;
     private String account;

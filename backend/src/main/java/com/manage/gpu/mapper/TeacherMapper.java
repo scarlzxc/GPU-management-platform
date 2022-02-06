@@ -28,7 +28,7 @@ public interface TeacherMapper {
      * @param teacher
      * @return
      */
-    @Select("select t.id from teacher t where t.teacher_name=#{teacher_name} and password=#{password}")
+    @Select("select t.id from teacher t where t.accounnt=#{account} and password=#{password}")
     Long login(Teacher teacher);
 
     /**
@@ -44,8 +44,8 @@ public interface TeacherMapper {
      * @param teacher
      * @return
      */
-    @Insert("INSERT INTO teacher (id, teacher_name, password, phone, email, account)\n" +
-            "    VALUES(#{id},#{teacher_name},#{password},#{phone},#{email},#{account});")
+    @Insert("INSERT INTO teacher (id, teacher_name, password, email, account)\n" +
+            "    VALUES(#{id},#{teacher_name},#{password},#{email},#{account});")
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
     Integer insertTeacher(Teacher teacher);
 
@@ -54,7 +54,7 @@ public interface TeacherMapper {
      * @param teacher
      * @return
      */
-    @Update("UPDATE Teacher SET teacher_name=#{teacher_name},password=#{password},phone=#{phone},email=#{email},account=#{account} WHERE id=#{id}")
+    @Update("UPDATE Teacher SET teacher_name=#{teacher_name},password=#{password},email=#{email},account=#{account} WHERE id=#{id}")
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
     Integer updateTeacher(Teacher teacher);
 }

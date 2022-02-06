@@ -5,7 +5,6 @@ public class InsertTeacherRequest {
     private String password;
     private String email;
     private String accounnt;
-    private String phone;
 
     public String getTeacher_name() {
         return teacher_name;
@@ -39,11 +38,4 @@ public class InsertTeacherRequest {
         this.accounnt = accounnt;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 }

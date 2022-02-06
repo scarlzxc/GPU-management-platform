@@ -35,7 +35,6 @@ public class StudentService {
             }else {
                 result.setMsg("登录成功");
                 result.setSuccess(true);
-                student.setId(ID);
                 Student studentByid = studentMapper.findStudentById(ID);
                 result.setDetail(studentByid);
             }
@@ -62,7 +61,6 @@ public class StudentService {
 
                 s.setStudent_name(insertStudentRequest.getStudent_name());
                 s.setPassword(insertStudentRequest.getPassword());
-                s.setPhone(insertStudentRequest.getPhone());
                 s.setEmail(insertStudentRequest.getEmail());
                 s.setTeacher_id(teacherMapper.findTeacherId(insertStudentRequest.getTeacher_name()));
                 s.setAccount(insertStudentRequest.getAccount());
@@ -90,7 +88,6 @@ public class StudentService {
         try {
             //学生修改自己信息的时候，姓名没法更改，前端传过来
             Student s = studentMapper.findStudentByName(updateStudentRequest.getStudent_name());
-            s.setPhone(updateStudentRequest.getPhone());
             s.setPassword(updateStudentRequest.getPassword());
             s.setAccount(updateStudentRequest.getAccount());
             s.setEmail(updateStudentRequest.getEmail());

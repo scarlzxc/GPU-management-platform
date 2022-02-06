@@ -3,7 +3,6 @@ package com.manage.gpu.entity;
 public class UpdateTeacherRequest {
     private String email;
     private String accounnt;
-    private String phone;
     private String password;
     private String teacher_name;
 
@@ -29,14 +28,6 @@ public class UpdateTeacherRequest {
 
     public void setAccounnt(String accounnt) {
         this.accounnt = accounnt;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getPassword() {

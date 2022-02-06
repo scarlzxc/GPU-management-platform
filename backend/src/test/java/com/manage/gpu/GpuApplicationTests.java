@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+
 @SpringBootTest
 class GpuApplicationTests {
 @Autowired
@@ -17,9 +19,31 @@ class GpuApplicationTests {
         int res = studentMapper.updateStudent(s1);
         System.out.println(res);
     }
+    public static void quicksort(int[] arr,int left,int right){
+        if(left<right){
+            int pivot = arr[left];
+            int i = left;
+            int j = right;
+
+            while(i < j){
+                while(i<j && arr[j] > pivot)
+                    j--;
+                arr[i] = arr[j];
+                while(i < j && arr[i]<= pivot)
+                    left++;
+                arr[j] = arr[i];
+            }
+            arr[i] = pivot;
+            quicksort(arr,i+1,right);
+            quicksort(arr,left,i-1);
+        }else return;
+    }
     @Test
     public void test2(){
-        System.out.println("111");
+        int[] num = new int[]{1,10,4};
+        quicksort(num,0,2);
+        System.out.println(num[1]);
     }
+
 
 }

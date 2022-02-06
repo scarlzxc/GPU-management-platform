@@ -27,7 +27,7 @@ public interface StudentMapper {
      * @param student
      * @return
      */
-    @Select("select s.id from student s where s.student_name=#{student_name} and password=#{password}")
+    @Select("select s.id from student s where s.account=#{accounnt} and password=#{password}")
     Long login(Student student);
 
     /**
@@ -35,8 +35,8 @@ public interface StudentMapper {
      * @param student
      * @return
      */
-    @Insert("INSERT INTO student (id, student_name, password, phone, email, teacher_id, account)\n" +
-            "    VALUES(#{id},#{student_name},#{password},#{phone},#{email},#{teacher_id},#{account});")
+    @Insert("INSERT INTO student (id, student_name, password, email, teacher_id, account)\n" +
+            "    VALUES(#{id},#{student_name},#{password},#{email},#{teacher_id},#{account});")
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
     Integer insertStudent(Student student);
 
@@ -45,7 +45,7 @@ public interface StudentMapper {
      * @param student
      * @return
      */
-    @Update("UPDATE Student SET student_name=#{student_name},password=#{password},phone=#{phone},email=#{email},teacher_id=#{teacher_id},account=#{account} WHERE id=#{id}")
+    @Update("UPDATE Student SET student_name=#{student_name},password=#{password},email=#{email},teacher_id=#{teacher_id},account=#{account} WHERE id=#{id}")
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
     Integer updateStudent(Student student);
 
