@@ -1,11 +1,6 @@
 package com.manage.gpu.utils;
 
-/**
- * @author zxc
- * @Packagename:com.glc.loginregister.Utils
- * @date 2022/1/20
- * @Description
- */
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
