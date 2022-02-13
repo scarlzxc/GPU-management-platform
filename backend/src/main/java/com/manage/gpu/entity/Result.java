@@ -45,6 +45,13 @@ public class Result<T>{
     private String msg;
     private T detail;
     private boolean success;
+    private String token;
 
+    public String getToken() {
+        return token;
+    }
 
+    public void setToken(String token) {
+        this.token = token;
+    }
 }
