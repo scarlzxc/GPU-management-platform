@@ -25,3 +25,12 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 server:
   port: 8080
+
+  #email
+  spring.mail.host: smtp.163.com
+  spring.mail.username: gpumanage@163.com
+  spring.mail.password: Scarlzxc123
+  spring.mail.port: 465
+  #设置为SSL协议
+  spring.mail.properties.mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
+  spring.mail.properties.from: m19978528200@163.com
