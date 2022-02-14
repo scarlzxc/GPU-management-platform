@@ -1,15 +1,17 @@
 package com.manage.gpu.mapper;
 
-import com.manage.gpu.entity.Admin;
-import com.manage.gpu.entity.Application;
-import com.manage.gpu.entity.Student;
-import com.manage.gpu.entity.Teacher;
+import com.manage.gpu.entity.*;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Mapper
 @Repository
 public interface ApplicationMapper {
+
+    @Select("select * from application")
+    List<Application> findAllApplication();
 
     @Select("SELECT * FROM application WHERE id=#{id}")
     Application findApplicationById(@Param("id")  Long id);

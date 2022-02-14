@@ -5,6 +5,8 @@ import com.manage.gpu.mapper.GpuMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GpuService {
     @Autowired
@@ -75,6 +77,25 @@ public class GpuService {
                 result.setSuccess(true);
             }
             result.setDetail(g);
+
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * 查看所有学生
+     * @return
+     */
+    public Result findallGpu(){
+        Result result=new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            List<Gpu> l = gpuMapper.findAllGpu();
+            result.setDetail(l);
 
         }catch (Exception e){
             result.setMsg(e.getMessage());

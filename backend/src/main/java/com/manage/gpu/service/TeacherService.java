@@ -4,6 +4,8 @@ import com.manage.gpu.mapper.TeacherMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TeacherService {
     @Autowired
@@ -85,6 +87,24 @@ public class TeacherService {
                 result.setSuccess(true);
             }
             result.setDetail(t);
+
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
+    }
+    /**
+     * 查看所有老师
+     * @return
+     */
+    public Result findallTeacher(){
+        Result result=new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            List<Teacher> l = teacherMapper.findAllTeacher();
+            result.setDetail(l);
 
         }catch (Exception e){
             result.setMsg(e.getMessage());

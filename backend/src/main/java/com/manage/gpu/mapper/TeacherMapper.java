@@ -6,9 +6,17 @@ import com.manage.gpu.entity.Teacher;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface TeacherMapper {
+
+    @Select("select * from teacher")
+    List<Teacher> findAllTeacher();
+
+
+
     /**
      *查看用户名是否已经存在
      * @param teacher_name

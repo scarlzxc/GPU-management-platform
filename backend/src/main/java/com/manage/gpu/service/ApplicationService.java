@@ -5,6 +5,8 @@ import com.manage.gpu.mapper.ApplicationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author zxc
  * @Packagename:com.manage.gpu.service
@@ -65,6 +67,20 @@ public class ApplicationService {
                 result.setSuccess(true);
             }
             result.setDetail(a);
+
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
+    }
+    public Result findallApplication(){
+        Result result=new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            List<Application> l = applicationMapper.findAllApplication();
+            result.setDetail(l);
 
         }catch (Exception e){
             result.setMsg(e.getMessage());

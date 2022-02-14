@@ -4,9 +4,18 @@ import com.manage.gpu.entity.Student;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface StudentMapper {
+
+
+
+
+
+    @Select("select * from student")
+    List<Student> findAllStudent();
 
     /**
      *查看用户名是否已经存在

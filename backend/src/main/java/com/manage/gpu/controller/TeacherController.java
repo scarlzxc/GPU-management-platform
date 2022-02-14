@@ -27,5 +27,9 @@ public class TeacherController {
     public Result update(@RequestBody UpdateTeacherRequest updateTeacherRequest){
         return teacherService.update(updateTeacherRequest);
     }
+    @PostMapping("/insert")
+    public Result insertteacher(@RequestBody InsertTeacherRequest insertTeacherRequest){
+        return teacherService.insert(insertTeacherRequest);
+    }
 
 }

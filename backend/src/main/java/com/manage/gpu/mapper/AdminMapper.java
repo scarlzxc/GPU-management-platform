@@ -6,9 +6,16 @@ import com.manage.gpu.entity.Teacher;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface AdminMapper {
+
+
+    @Select("select * from admin")
+    List<Admin> findAllAdmin();
+
 
     /**
      *查看用户名是否已经存在

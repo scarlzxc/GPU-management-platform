@@ -2,16 +2,20 @@ package com.manage.gpu.mapper;
 
 
 import com.manage.gpu.entity.Gpu;
+import com.manage.gpu.entity.Student;
 import com.manage.gpu.entity.Teacher;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Mapper
 @Repository
 public interface GpuMapper {
+
+    @Select("select * from gpu")
+    List<Gpu> findAllGpu();
+
     /**
      * 添加
      * @param gpu

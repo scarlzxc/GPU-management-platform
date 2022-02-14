@@ -5,6 +5,8 @@ import com.manage.gpu.mapper.AdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AdminService {
     @Autowired
@@ -81,6 +83,25 @@ public class AdminService {
                 result.setSuccess(true);
             }
             result.setDetail(a);
+
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * 查看所有学生
+     * @return
+     */
+    public Result findallAdmin(){
+        Result result=new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            List<Admin> l = adminMapper.findAllAdmin();
+            result.setDetail(l);
 
         }catch (Exception e){
             result.setMsg(e.getMessage());

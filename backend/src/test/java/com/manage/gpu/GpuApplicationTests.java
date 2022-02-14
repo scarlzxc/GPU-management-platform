@@ -1,12 +1,15 @@
 package com.manage.gpu;
 
+import com.manage.gpu.entity.Result;
 import com.manage.gpu.entity.Student;
 import com.manage.gpu.mapper.StudentMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootTest
 class GpuApplicationTests {
@@ -43,6 +46,10 @@ class GpuApplicationTests {
         int[] num = new int[]{1,10,4};
         quicksort(num,0,2);
         System.out.println(num[1]);
+    }
+    @Test
+    public  void test3(){
+
     }
 
 
