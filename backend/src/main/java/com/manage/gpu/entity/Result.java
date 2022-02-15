@@ -8,11 +8,7 @@ package com.manage.gpu.entity;
  */
 
 public class Result<T>{
-    public Result(String msg, boolean success, T detail) {
-        this.msg = msg;
-        this.success = success;
-        this.detail = detail;
-    }
+
 
     public Result() {
 

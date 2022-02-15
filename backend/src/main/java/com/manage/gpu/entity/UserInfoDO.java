@@ -11,27 +11,16 @@ import java.util.Date;
  */
 
 public class UserInfoDO {
-    private int id;
-    private String userId;
+    private String type;
     private String userName;
-    private String passWord;
-    private String email;
 
 
-    public int getId() {
-        return id;
+    public String getType() {
+        return type;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getUserName() {
@@ -42,21 +31,6 @@ public class UserInfoDO {
         this.userName = userName;
     }
 
-    public String getPassWord() {
-        return passWord;
-    }
-
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
 
 

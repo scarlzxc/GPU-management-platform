@@ -2,9 +2,12 @@ package com.manage.gpu.service;
 
 import com.manage.gpu.entity.*;
 import com.manage.gpu.mapper.AdminMapper;
+import com.manage.gpu.utils.JWTUtil;
+import com.manage.gpu.utils.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -28,6 +31,15 @@ public class AdminService {
                 admin.setId(ID);
                 Admin adminbyid = adminMapper.findAdminById(ID);
                 result.setDetail(adminbyid);
+                //生成jwt
+                HashMap<String,String> paylod = new HashMap<>();
+                paylod.put("type","admin");
+                paylod.put("name",admin.getAdmin_name());
+                String token = JWTUtil.getToken(paylod);
+                result.setToken(token);
+                //放入redis
+                RedisUtils redisUtils = new RedisUtils();
+                redisUtils.hset("jwt",token,true);
             }
 
         }catch (Exception e){
@@ -36,6 +48,29 @@ public class AdminService {
         }
         return result;
     }
+    /**
+     * 退出
+     * @param token
+     * @return
+     */
+    public Result logout(String token){
+        Result result=new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            RedisUtils redisUtils = new RedisUtils();
+            redisUtils.hdel("jwt",token);
+            result.setMsg("退出成功");
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
+
+    }
+
+
+
     /**
      * 录入管理员
      */

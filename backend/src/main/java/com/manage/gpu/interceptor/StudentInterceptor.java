@@ -6,18 +6,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.manage.gpu.entity.UserInfoDO;
 import com.manage.gpu.utils.JWTUtil;
 import com.manage.gpu.utils.LocalUser;
-
+import com.manage.gpu.utils.RedisUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.Map;
 
-/**
- * @author Tcm
- */
-public class JWTInterceptor implements HandlerInterceptor {
+public class StudentInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HashMap<String, Object> map = new HashMap<>();
@@ -27,6 +24,23 @@ public class JWTInterceptor implements HandlerInterceptor {
             //验证令牌
             JWTUtil.verify(token);
             UserInfoDO user = JWTUtil.getUser(token);
+            RedisUtils redisUtils = new RedisUtils();
+            boolean b = (boolean) redisUtils.hget("jwt",token);
+            if(user.getType().equals("teacher")){
+                //确定身份
+                map.put("msg","没有权限");
+                String json = new ObjectMapper().writeValueAsString(map);
+                response.setContentType("application/json;charset=UTF-8");
+                response.getWriter().println(json);
+                return false;
+            }else if(!b){
+                //确定token是否还存在
+                map.put("msg","token不存在");
+                String json = new ObjectMapper().writeValueAsString(map);
+                response.setContentType("application/json;charset=UTF-8");
+                response.getWriter().println(json);
+                return false;
+            }
             LocalUser.USER.set(user);
             //放行请求
             return true;
@@ -48,18 +62,4 @@ public class JWTInterceptor implements HandlerInterceptor {
         response.getWriter().println(json);
         return false;
     }
-
-    /**
-     * 关闭当前线程
-     * @param request
-     * @param response
-     * @param handler
-     * @param modelAndView
-     * @throws Exception
-     */
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        LocalUser.USER.remove();
-    }
 }
-

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author zxc
  * @Packagename:com.manage.gpu.controller
@@ -22,6 +24,11 @@ public class TeacherController {
     @PostMapping("/login")
     public Result login(@RequestBody Teacher teacher) {
         return teacherService.login(teacher);
+    }
+    @PostMapping("/logout")
+    public Result logout(HttpServletRequest request){
+        String token = request.getHeader("token");
+        return teacherService.logout(token);
     }
     @PostMapping("/update")
     public Result update(@RequestBody UpdateTeacherRequest updateTeacherRequest){

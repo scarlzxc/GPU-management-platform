@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author zxc
  * @Packagename:com.manage.gpu.controller
@@ -33,6 +35,11 @@ public class AdminController {
     @PostMapping("/login")
     public Result login(@RequestBody Admin admin) {
         return adminService.login(admin);
+    }
+    @PostMapping("/logout")
+    public Result logout(HttpServletRequest request){
+        String token = request.getHeader("token");
+        return adminService.logout(token);
     }
 
 

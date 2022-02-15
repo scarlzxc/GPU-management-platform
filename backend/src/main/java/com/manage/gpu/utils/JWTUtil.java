@@ -19,7 +19,7 @@ public class JWTUtil {
 
     /**
      * 生成token
-     * @param map 用户信息（userId，2019211715）
+     * @param map
      * @return
      */
     public static String getToken(Map<String,String> map) {
@@ -50,13 +50,11 @@ public class JWTUtil {
     public static UserInfoDO getUser(String token){
         final UserInfoDO userInfoDO = new UserInfoDO();
         DecodedJWT verify = JWTUtil.verify(token);
-        String userId = verify.getClaim("userId").asString();
-        String userName = verify.getClaim("userName").asString();
-        String email = verify.getClaim("email").asString();
+        String type = verify.getClaim("type").asString();
+        String userName = verify.getClaim("name").asString();
 
-        userInfoDO.setUserId(verify.getClaim("userId").asString());
-        userInfoDO.setUserName(verify.getClaim("userName").asString());
-        userInfoDO.setEmail(verify.getClaim("email").asString());
+        userInfoDO.setType(verify.getClaim("type").asString());
+        userInfoDO.setUserName(verify.getClaim("name").asString());
         return userInfoDO;
     }
 }

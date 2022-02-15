@@ -6,10 +6,14 @@ import com.manage.gpu.entity.Student;
 import com.manage.gpu.entity.UpdateStudentRequest;
 import com.manage.gpu.mapper.StudentMapper;
 import com.manage.gpu.mapper.TeacherMapper;
+import com.manage.gpu.utils.JWTUtil;
+import com.manage.gpu.utils.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zxc
@@ -39,8 +43,38 @@ public class StudentService {
                 result.setSuccess(true);
                 Student studentByid = studentMapper.findStudentById(ID);
                 result.setDetail(studentByid);
+                //生成jwt
+                HashMap<String,String> paylod = new HashMap<>();
+                paylod.put("type","student");
+                paylod.put("name",student.getStudent_name());
+                String token = JWTUtil.getToken(paylod);
+                result.setToken(token);
+                //放入redis
+                RedisUtils redisUtils = new RedisUtils();
+                redisUtils.hset("jwt",token,true);
             }
 
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
+
+    }
+
+    /**
+     * 退出
+     * @param token
+     * @return
+     */
+    public Result logout(String token){
+        Result result=new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+                RedisUtils redisUtils = new RedisUtils();
+                redisUtils.hdel("jwt",token);
+                result.setMsg("退出成功");
         }catch (Exception e){
             result.setMsg(e.getMessage());
             e.printStackTrace();

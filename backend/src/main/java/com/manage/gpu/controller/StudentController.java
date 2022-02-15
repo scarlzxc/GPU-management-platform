@@ -8,6 +8,8 @@ import com.manage.gpu.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author zxc
  * @Packagename:com.manage.gpu.controller
@@ -24,6 +26,11 @@ public class StudentController {
     @PostMapping("/login")
     public Result login(@RequestBody Student student) {
         return studentService.login(student);
+    }
+    @PostMapping("/logout")
+    public Result logout(HttpServletRequest request){
+        String token = request.getHeader("token");
+        return studentService.logout(token);
     }
 
 
