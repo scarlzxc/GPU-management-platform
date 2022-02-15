@@ -43,18 +43,42 @@ public class AdminController {
     }
 
 
-    @PostMapping("/insert")
+    @PostMapping("/insertadmin")
     public Result insertadmin(@RequestBody InsertAdminRequest insertAdminRequest){
         return adminService.insert(insertAdminRequest);
     }
-
-
-    @PostMapping("/update")
+    @PostMapping("/updateadmin")
     public Result updateadmin(@RequestBody UpdateAdminRequest updateAdminRequest){
         return adminService.update(updateAdminRequest);
     }
+    @PostMapping("/getalladmin")
+    public Result getalladmin(){return adminService.findallAdmin();}
 
 
+    @PostMapping("/insertstudent")
+    public Result insertstudent(@RequestBody InsertStudentRequest insertStudentRequest){
+        return studentService.insert(insertStudentRequest);}
+    @PostMapping("/getallstudent")
+    public Result getallstudent(){
+        return studentService.findallStudent();
+    }
+    @PostMapping("/updatestudent")
+    public Result update(@RequestBody UpdateStudentRequest updateStudentRequest){
+        return studentService.update(updateStudentRequest);
+    }
+
+    @PostMapping("/updateteacher")
+    public Result update(@RequestBody UpdateTeacherRequest updateTeacherRequest){
+        return teacherService.update(updateTeacherRequest);
+    }
+    @PostMapping("/insertteacher")
+    public Result insertteacher(@RequestBody InsertTeacherRequest insertTeacherRequest){
+        return teacherService.insert(insertTeacherRequest);
+    }
+    @PostMapping("/getallteacher")
+    public Result getallteacher(){
+        return teacherService.findallTeacher();
+    }
 
 
 

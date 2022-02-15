@@ -24,5 +24,9 @@ public class GpuController {
     public Result updategpu(@RequestBody GpuRequest gpuRequest){
         return gpuService.update(gpuRequest);
     }
+    @PostMapping("/getallgpu")
+    public Result getallgpu(){
+        return gpuService.findallGpu();
+    }
 
 }

@@ -33,24 +33,10 @@ public class StudentController {
         return studentService.logout(token);
     }
 
-
-
-
-
-
-
     @PostMapping("/update")
     public Result update(@RequestBody UpdateStudentRequest updateStudentRequest){
         return studentService.update(updateStudentRequest);
     }
 
-    @PostMapping("/insert")
-    public Result insertstudent(@RequestBody InsertStudentRequest insertStudentRequest){
-        return studentService.insert(insertStudentRequest);
-    }
-    @PostMapping("/getall")
-    public Result getallstudent(){
-        return studentService.findallStudent();
-    }
 
 }
