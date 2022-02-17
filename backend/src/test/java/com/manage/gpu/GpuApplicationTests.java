@@ -1,8 +1,10 @@
 package com.manage.gpu;
 
+import com.manage.gpu.entity.MailVo;
 import com.manage.gpu.entity.Result;
 import com.manage.gpu.entity.Student;
 import com.manage.gpu.mapper.StudentMapper;
+import com.manage.gpu.service.MailService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,6 +17,8 @@ import java.util.List;
 class GpuApplicationTests {
 @Autowired
     StudentMapper studentMapper;
+    @Autowired
+    MailService mailService;
     @Test
     public void test1() {
         Student s1 = studentMapper.findStudentById(1L);
@@ -49,6 +53,13 @@ class GpuApplicationTests {
     }
     @Test
     public  void test3(){
+        MailVo mv = new MailVo();
+        mv.setSubject("test");
+        mv.setId("111");
+        mv.setTo("953582049@qq.com");
+        mv.setText("123test");
+        mailService.sendMimeMail(mv);
+        System.out.println("123");
 
     }
 
