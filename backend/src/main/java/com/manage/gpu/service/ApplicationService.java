@@ -100,7 +100,7 @@ public class ApplicationService {
                             "ip:"+g.getIp()+
                                     "用户名："+g.getUsername()+
                                     "密码："+g.getPassword()+
-                                    "到期时间"+a.getEnd_time();
+                                    "到期时间"+a.getEnd_time()
                     );
                     //同时更新gpu信息,通过用户名，用户名空 就是空闲状态的gpu
                     g.setUser(a.getName());

@@ -24,30 +24,9 @@ class GpuApplicationTests {
     RedisUtils redisUtils;
     @Test
     public void test1() {
-        Student s1 = studentMapper.findStudentById(1L);
-        s1.setPassword("123");
-        int res = studentMapper.updateStudent(s1);
-        System.out.println(res);
+        System.out.println("123");
     }
-    public static void quicksort(int[] arr,int left,int right){
-        if(left<right){
-            int pivot = arr[left];
-            int i = left;
-            int j = right;
 
-            while(i < j){
-                while(i<j && arr[j] > pivot)
-                    j--;
-                arr[i] = arr[j];
-                while(i < j && arr[i]<= pivot)
-                    left++;
-                arr[j] = arr[i];
-            }
-            arr[i] = pivot;
-            quicksort(arr,i+1,right);
-            quicksort(arr,left,i-1);
-        }else return;
-    }
     @Test
     public void test2(){
 
@@ -65,6 +44,7 @@ class GpuApplicationTests {
         System.out.println("123");
 
     }
+
 
 
 }

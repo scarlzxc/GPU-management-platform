@@ -1,16 +1,4 @@
 spring:
-
-  mail:
-    host: smtp.163.com
-    username:  gpumanage@163.com
-    password: URAQIDMLULWPYBPI
-    from: gpumanage@163.com
-    properties.mail.smtp.starttls.enable: true
-    properties.mail.smtp.starttls.required: true
-    properties.mail.smtp.ssl.enable: true
-    default-encoding: utf-8
-
-
   datasource:
     #   数据源基本配置
     username: zhaowdzxc
@@ -18,23 +6,6 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://rm-uf65w117k4w6i8zpeno.mysql.rds.aliyuncs.com:3306/gpu?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     type: com.alibaba.druid.pool.DruidDataSource
-    #   数据源其他配置
-    initialSize: 5
-    minIdle: 5
-    maxActive: 20
-    maxWait: 60000
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: SELECT 1 FROM DUAL
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
-    filters: stat,wall,log4j
-    maxPoolPreparedStatementPerConnectionSize: 20
-    useGlobalDataSourceStat: true
-    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
   redis:
   # redis数据库索引(默认为0)，我们使用索引为3的数据库，避免和其他数据库冲突
@@ -48,20 +19,16 @@ spring:
   # redis连接超时时间（单位毫秒）
     timeout: 5000
   # redis连接池配置
-    pool:
-    # 最大可用连接数（默认为8，负数表示无限）
-      max-active: 8
-    # 最大空闲连接数（默认为8，负数表示无限）
-      max-idle: 8
-    # 最小空闲连接数（默认为0，该值只有为正数才有用）
-      min-idle: 0
-    # 从连接池中获取连接最大等待时间（默认为-1，单位为毫秒，负数表示无限）
-      max-wait: -1
 
-
-
-spring.mail.port: 994
-spring.mail.protocol: smtp
-spring.mail.properties.mail.smtp.socketFactory.port: 994
-spring.mail.properties.mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
-
+  mail:
+    host: smtp.163.com
+    port: 465
+    username: gpumanage@163.com
+    password: RSFXNIZLEDVEFUBE
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+        debug: true

@@ -1,15 +1,19 @@
 package com.manage.gpu.service;
 
 import com.manage.gpu.entity.MailVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
+
 @Service
 public class MailService {
 
-    private JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+    @Autowired
+    private JavaMailSenderImpl mailSender;
     //检测邮件信息类
     public void checkMail(MailVo mailVo) {
         if (StringUtils.isEmpty(mailVo.getTo())) {
