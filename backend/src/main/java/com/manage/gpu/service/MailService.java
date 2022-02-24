@@ -1,7 +1,6 @@
 package com.manage.gpu.service;
 
 import com.manage.gpu.entity.MailVo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -29,6 +28,7 @@ public class MailService {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mailSender.createMimeMessage(), true);//true表示支持复杂类型
             //mailVo.setFrom(getMailSendFrom());//邮件发信人从配置项读取
             messageHelper.setTo(mailVo.getTo().split(","));//邮件收信人
+            messageHelper.setFrom("gpumanage@163.com");
             messageHelper.setSubject(mailVo.getSubject());//邮件主题
             messageHelper.setText(mailVo.getText());//邮件内容
             mailSender.send(messageHelper.getMimeMessage());//正式发送邮件

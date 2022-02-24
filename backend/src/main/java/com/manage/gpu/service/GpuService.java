@@ -86,7 +86,7 @@ public class GpuService {
     }
 
     /**
-     * 查看所有学生
+     * 查看所有gpu
      * @return
      */
     public Result findallGpu(){

@@ -1,4 +1,16 @@
 spring:
+
+  mail:
+    host: smtp.163.com
+    username:  gpumanage@163.com
+    password: URAQIDMLULWPYBPI
+    from: gpumanage@163.com
+    properties.mail.smtp.starttls.enable: true
+    properties.mail.smtp.starttls.required: true
+    properties.mail.smtp.ssl.enable: true
+    default-encoding: utf-8
+
+
   datasource:
     #   数据源基本配置
     username: zhaowdzxc
@@ -46,11 +58,10 @@ spring:
     # 从连接池中获取连接最大等待时间（默认为-1，单位为毫秒，负数表示无限）
       max-wait: -1
 
-  #email
-spring.mail.host: smtp.163.com
-spring.mail.username: gpumanage@163.com
-spring.mail.password: Scarlzxc123
-spring.mail.port: 465
-  #设置为SSL协议
+
+
+spring.mail.port: 994
+spring.mail.protocol: smtp
+spring.mail.properties.mail.smtp.socketFactory.port: 994
 spring.mail.properties.mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
-spring.mail.properties.from: m19978528200@163.com
+

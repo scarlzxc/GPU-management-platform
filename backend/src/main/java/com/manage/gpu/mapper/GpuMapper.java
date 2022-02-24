@@ -34,4 +34,7 @@ public interface GpuMapper {
     @Update("UPDATE gpu SET resource_owner = #{resource_owner},resource_user = #{resource_user},host_name = #{host_name},ip = #{ip},user=#{user},gpu_resource=#{gpu_resource},username=#{username}, password=#{password},ssd=#{ssd},disk=#{disk},memory=#{memory},cpu=#{cpu},os=#{os},remarks=#{remarks} WHERE id=#{id}")
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
     Integer updateGpu(Gpu gpu);
+
+    @Select("SELECT * FROM gpu WHERE id=#{id}")
+    Gpu findGPUById(@Param("id")  Long id);
 }

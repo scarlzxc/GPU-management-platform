@@ -29,6 +29,9 @@ public interface StudentMapper {
     @Select("SELECT * FROM student WHERE id=#{id}")
     Student findStudentById(@Param("id")  Long id);
 
+    //根据学生姓名找老师id
+    @Select("SELECT s.teacher_id FROM student s WHERE s.student_name=#{student_name}")
+    Long findstuTeacher(@Param("student_name")  String student_name);
 
 
     /**
@@ -57,5 +60,6 @@ public interface StudentMapper {
     @Update("UPDATE Student SET student_name=#{student_name},password=#{password},email=#{email},teacher_id=#{teacher_id},account=#{account} WHERE id=#{id}")
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
     Integer updateStudent(Student student);
+
 
 }
