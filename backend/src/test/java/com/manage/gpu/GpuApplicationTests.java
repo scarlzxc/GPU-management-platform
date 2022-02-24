@@ -5,6 +5,7 @@ import com.manage.gpu.entity.Result;
 import com.manage.gpu.entity.Student;
 import com.manage.gpu.mapper.StudentMapper;
 import com.manage.gpu.service.MailService;
+import com.manage.gpu.utils.RedisUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +20,8 @@ class GpuApplicationTests {
     StudentMapper studentMapper;
     @Autowired
     MailService mailService;
+    @Autowired
+    RedisUtils redisUtils;
     @Test
     public void test1() {
         Student s1 = studentMapper.findStudentById(1L);
@@ -47,9 +50,9 @@ class GpuApplicationTests {
     }
     @Test
     public void test2(){
-        int[] num = new int[]{1,10,4};
-        quicksort(num,0,2);
-        System.out.println(num[1]);
+
+        redisUtils.hset("123","111","234");
+        System.out.println(redisUtils.hget("123","111"));
     }
     @Test
     public  void test3(){
