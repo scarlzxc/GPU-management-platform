@@ -153,6 +153,7 @@ public class StudentService {
         try {
             List<Student> l = studentMapper.findAllStudent();
             result.setDetail(l);
+            result.setSuccess(true);
 
         }catch (Exception e){
             result.setMsg(e.getMessage());

@@ -40,4 +40,9 @@ public interface ApplicationMapper {
      */
     @Select("select * from application a where a.name=#{name}")
     Application findApplicationByName(@Param("name") String name);
+
+    @Select("select * from application a where a.status = 0")
+    List<Application> findApplication1();
+    @Select("select * from application a where a.status = 1")
+    List<Application> findApplication2();
 }

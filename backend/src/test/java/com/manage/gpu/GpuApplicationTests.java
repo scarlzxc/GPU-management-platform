@@ -1,8 +1,10 @@
 package com.manage.gpu;
 
+import com.manage.gpu.entity.Application;
 import com.manage.gpu.entity.MailVo;
 import com.manage.gpu.entity.Result;
 import com.manage.gpu.entity.Student;
+import com.manage.gpu.mapper.ApplicationMapper;
 import com.manage.gpu.mapper.StudentMapper;
 import com.manage.gpu.service.MailService;
 import com.manage.gpu.utils.RedisUtils;
@@ -22,6 +24,8 @@ class GpuApplicationTests {
     MailService mailService;
     @Autowired
     RedisUtils redisUtils;
+    @Autowired
+    ApplicationMapper applicationMapper;
     @Test
     public void test1() {
         System.out.println("123");
@@ -44,6 +48,19 @@ class GpuApplicationTests {
         System.out.println("123");
 
     }
+    @Test
+    public  void test4(){
+        Application a = new Application();
+        a.setName("zxczz");
+        a.setReason("测试2");
+        a.setStatus(0L);
+        applicationMapper.insertApplication(a);
+        List<Application> l = applicationMapper.findApplication1();
+        System.out.println(l.get(0).getReason());
+
+    }
+
+
 
 
 

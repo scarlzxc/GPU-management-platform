@@ -15,6 +15,8 @@ public interface GpuMapper {
 
     @Select("select * from gpu")
     List<Gpu> findAllGpu();
+    @Select("select * from gpu where user = null")
+    List<Gpu> findavailableGpu();
 
     /**
      * 添加

@@ -103,6 +103,9 @@ public class ApplicationService {
                                     "到期时间"+a.getEnd_time()
                     );
                     //同时更新gpu信息,通过用户名，用户名空 就是空闲状态的gpu
+                    Long teacher_id = studentMapper.findstuTeacher(a.getName());
+                    //取出学生对应的老师名，作为resource_user
+                    g.setResource_user(teacherMapper.findTeacherById(teacher_id).getTeacher_name());
                     g.setUser(a.getName());
                     gpuMapper.updateGpu(g);
                 }
@@ -117,12 +120,52 @@ public class ApplicationService {
         }
         return result;
     }
+    /**
+     * 查看待审核(老师)
+     * @return
+     */
+    public Result findapplicationtocheck(){
+        Result result=new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            List<Application> l = applicationMapper.findApplication1();
+            result.setDetail(l);
+
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+            result.setSuccess(true);
+        }
+        return result;
+    }
+    /**
+     * 查看待分配（管理员）
+     * @return
+     */
+    public Result findapplicationtogive(){
+        Result result=new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            List<Application> l = applicationMapper.findApplication2();
+            result.setDetail(l);
+
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+            result.setSuccess(true);
+        }
+        return result;
+    }
 
 
 
 
-
-
+    /**
+     * 查看所有申请
+     * @return
+     */
 
     public Result findallApplication(){
         Result result=new Result();

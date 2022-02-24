@@ -49,7 +49,7 @@ public class GpuService {
     }
 
     /**
-     * 修改gpu
+     * 修改gpu信息
      */
     public Result update(GpuRequest gpuRequest){
         Result result=new Result();
@@ -100,6 +100,28 @@ public class GpuService {
         }catch (Exception e){
             result.setMsg(e.getMessage());
             e.printStackTrace();
+        }
+        return result;
+    }
+
+
+
+    /**
+     * 查看空闲gpu（管理员分配时查看）
+     * @return
+     */
+    public Result findavailablegpu(){
+        Result result=new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            List<Gpu> l = gpuMapper.findavailableGpu();
+            result.setDetail(l);
+
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+            result.setSuccess(true);
         }
         return result;
     }
