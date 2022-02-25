@@ -42,4 +42,7 @@ public interface GpuMapper {
     @Select("SELECT * FROM gpu WHERE id=#{id}")
     Gpu findGPUById(@Param("id")  Long id);
 
+    @Delete(" DELETE FROM gpu WHERE id=#{id}")
+    Integer deletetgpu(Long id);
+
 }

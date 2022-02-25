@@ -65,4 +65,7 @@ public interface TeacherMapper {
     @Update("UPDATE Teacher SET teacher_name=#{teacher_name},password=#{password},email=#{email},account=#{account} WHERE id=#{id}")
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
     Integer updateTeacher(Teacher teacher);
+
+    @Delete(" DELETE FROM teacher WHERE id=#{id}")
+    Integer deleteteacher(Long id);
 }

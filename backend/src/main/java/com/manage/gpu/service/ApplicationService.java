@@ -79,6 +79,7 @@ public class ApplicationService {
         result.setDetail(null);
         try {
             Application a = applicationMapper.findApplicationById(applicationRequest.getId());
+            if(applicationRequest.getGpu_id()!=null) a.setGpu_id(applicationRequest.getGpu_id());
             //修改状态
             a.setStatus(applicationRequest.getStatus());
             int res = applicationMapper.updateApplication(a);

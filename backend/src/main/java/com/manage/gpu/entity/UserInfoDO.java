@@ -5,9 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
- * @author 小明
- * @date 2021/10/19
- * @description
+ * jwt解析信息类
  */
 
 public class UserInfoDO {

@@ -1,15 +1,9 @@
 package com.manage.gpu.controller;
 
 import com.manage.gpu.entity.*;
-import com.manage.gpu.service.AdminService;
-import com.manage.gpu.service.GpuService;
-import com.manage.gpu.service.StudentService;
-import com.manage.gpu.service.TeacherService;
+import com.manage.gpu.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,6 +25,9 @@ public class AdminController {
     private TeacherService teacherService;
     @Autowired
     private GpuService gpuService;
+    @Autowired
+    private ApplicationService applicationService;
+
 
     @PostMapping("/login")
     public Result login(@RequestBody Admin admin) {
@@ -42,7 +39,7 @@ public class AdminController {
         return adminService.logout(token);
     }
 
-
+    //管理员
     @PostMapping("/insertadmin")
     public Result insertadmin(@RequestBody InsertAdminRequest insertAdminRequest){
         return adminService.insert(insertAdminRequest);
@@ -54,7 +51,7 @@ public class AdminController {
     @PostMapping("/getalladmin")
     public Result getalladmin(){return adminService.findallAdmin();}
 
-
+    //学生
     @PostMapping("/insertstudent")
     public Result insertstudent(@RequestBody InsertStudentRequest insertStudentRequest){
         return studentService.insert(insertStudentRequest);}
@@ -62,15 +59,12 @@ public class AdminController {
     public Result getallstudent(){
         return studentService.findallStudent();
     }
-    @PostMapping("/updatestudent")
-    public Result update(@RequestBody UpdateStudentRequest updateStudentRequest){
-        return studentService.update(updateStudentRequest);
+    @PostMapping("/deletestudent")
+    public Result deletestudent(@RequestParam("id") Long id){
+        return studentService.deleteStudent(id);
     }
 
-    @PostMapping("/updateteacher")
-    public Result update(@RequestBody UpdateTeacherRequest updateTeacherRequest){
-        return teacherService.update(updateTeacherRequest);
-    }
+    //老师
     @PostMapping("/insertteacher")
     public Result insertteacher(@RequestBody InsertTeacherRequest insertTeacherRequest){
         return teacherService.insert(insertTeacherRequest);
@@ -78,6 +72,45 @@ public class AdminController {
     @PostMapping("/getallteacher")
     public Result getallteacher(){
         return teacherService.findallTeacher();
+    }
+    @PostMapping("/deletteacher")
+    public Result deletteacher(@RequestParam("id") Long id){
+        return teacherService.deleteteacher(id);
+    }
+
+
+
+    //gpu
+    @PostMapping("/insertgpu")
+    public Result update(@RequestBody GpuRequest gpuRequest){
+        return gpuService.insert(gpuRequest);
+    }
+
+    @PostMapping("/updategpu")
+    public Result updategpu(@RequestBody GpuRequest gpuRequest){
+        return gpuService.update(gpuRequest);
+    }
+    @PostMapping("/getallgpu")
+    public Result getallgpu(){
+        return gpuService.findallGpu();}
+    @PostMapping("/deletegpu")
+    public Result deletegpu(@RequestParam("id") Long id){
+        return gpuService.deletegpu(id);
+    }
+    //查看所有表单
+    @PostMapping("/getallapplication")
+    public Result getallapplication(){
+        return applicationService.findallApplication();
+    }
+    //查看待分配列表
+    @PostMapping("/listtogive")
+    public Result listtogive(){
+        return applicationService.findapplicationtogive();
+    }
+    //分配资源
+    @PostMapping("/givegpu")
+    public Result givegpu(ApplicationRequest applicationRequest){
+        return applicationService.update(applicationRequest);
     }
 
 

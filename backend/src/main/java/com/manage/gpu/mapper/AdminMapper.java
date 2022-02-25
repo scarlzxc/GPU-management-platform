@@ -58,4 +58,6 @@ public interface AdminMapper {
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
     Integer updateAdmin(Admin admin);
 
+    @Delete(" DELETE FROM admin WHERE id=#{id}")
+    Integer deletetadmin(Long id);
 }

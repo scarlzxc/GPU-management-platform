@@ -146,6 +146,26 @@ public class GpuService {
         }
         return result;
     }
+    /**
+     * 删除gpu
+     * @return
+     */
+    public Result deletegpu(Long id){
+        Result result=new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            if(gpuMapper.deletetgpu(id)!=null){
+                result.setDetail("删除成功");
+                result.setSuccess(true);
+            }
 
+
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
+    }
 
 }

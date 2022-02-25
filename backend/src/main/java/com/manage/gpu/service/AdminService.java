@@ -127,7 +127,7 @@ public class AdminService {
     }
 
     /**
-     * 查看所有学生
+     * 查看所有管理员
      * @return
      */
     public Result findallAdmin(){
@@ -144,5 +144,27 @@ public class AdminService {
         }
         return result;
     }
+    /**
+     * 删除admin
+     * @return
+     */
+    public Result deletegpu(Long id){
+        Result result=new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            if(adminMapper.deletetadmin(id)!=null){
+                result.setDetail("删除成功");
+                result.setSuccess(true);
+            }
+
+
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 
 }

@@ -61,5 +61,7 @@ public interface StudentMapper {
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
     Integer updateStudent(Student student);
 
+    @Delete(" DELETE FROM student WHERE id=#{id}")
+    Integer deleteStudent(Long id);
 
 }

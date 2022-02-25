@@ -14,6 +14,15 @@ public class ApplicationRequest {
     private long start_time;
     private long end_time;
     private long status;
+    private Long gpu_id;//分配的gpu的id
+
+    public Long getGpu_id() {
+        return gpu_id;
+    }
+
+    public void setGpu_id(Long gpu_id) {
+        this.gpu_id = gpu_id;
+    }
 
     public Long getId() {
         return id;

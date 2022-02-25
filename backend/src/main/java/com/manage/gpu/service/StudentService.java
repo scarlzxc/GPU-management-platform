@@ -161,5 +161,26 @@ public class StudentService {
         }
         return result;
     }
+    /**
+     * 删除学生
+     * @return
+     */
+    public Result deleteStudent(Long id){
+        Result result=new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            if(studentMapper.deleteStudent(id)!=null){
+                result.setDetail("删除成功");
+                result.setSuccess(true);
+            }
+
+
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
+    }
 
 }
