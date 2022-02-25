@@ -15,6 +15,10 @@ public interface ApplicationMapper {
 
     @Select("SELECT * FROM application WHERE id=#{id}")
     Application findApplicationById(@Param("id")  Long id);
+    @Select("SELECT * FROM application WHERE gpu_id=#{gpu_id}")
+    Application findApplicationBygpuId(@Param("gpu_id")  Long gpu_id);
+
+
     /**
      * 添加
      * @param application

@@ -126,4 +126,26 @@ public class GpuService {
         return result;
     }
 
+
+    /**
+     * 查看gpu使用情况
+     * @return
+     */
+    public Result findapplygpu(){
+        Result result=new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            List<Gpu> l = gpuMapper.findavailableGpu();
+            result.setDetail(l);
+
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+            result.setSuccess(true);
+        }
+        return result;
+    }
+
+
 }

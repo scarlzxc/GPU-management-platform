@@ -71,6 +71,7 @@ public class ApplicationService {
     }
     /**
      * 老师，管理员审核申请单信息
+     * 管理员分配时 applicationrequest传要分配的gpu id，老师审核时 没有 就不填
      */
     public Result update(ApplicationRequest applicationRequest){
         Result result=new Result();
@@ -85,7 +86,7 @@ public class ApplicationService {
                 result.setMsg("修改成功");
                 result.setSuccess(true);
                 MailVo mv = new MailVo();
-                //老师审批完 状态为1
+                //老师审批完 状态为1，前端修改
                 if(a.getStatus()==1){
                     mv.setSubject("请分配gpu");
                     //先发给第一个admin，后面再考虑发多个
@@ -108,6 +109,7 @@ public class ApplicationService {
                     g.setResource_user(teacherMapper.findTeacherById(teacher_id).getTeacher_name());
                     g.setUser(a.getName());
                     gpuMapper.updateGpu(g);
+
                 }
                 mailService.checkMail(mv);
                 mailService.sendMimeMail(mv);

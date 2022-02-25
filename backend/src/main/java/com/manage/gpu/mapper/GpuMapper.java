@@ -17,6 +17,8 @@ public interface GpuMapper {
     List<Gpu> findAllGpu();
     @Select("select * from gpu where user = null")
     List<Gpu> findavailableGpu();
+    @Select("select * from gpu g where user != null")
+    List<Gpu> findbusyGpu();
 
     /**
      * 添加
@@ -39,4 +41,5 @@ public interface GpuMapper {
 
     @Select("SELECT * FROM gpu WHERE id=#{id}")
     Gpu findGPUById(@Param("id")  Long id);
+
 }
