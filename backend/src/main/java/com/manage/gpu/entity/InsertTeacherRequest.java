@@ -4,7 +4,7 @@ public class InsertTeacherRequest {
     private String teacher_name;
     private String password;
     private String email;
-    private String accounnt;
+    private String account;
 
     public String getTeacher_name() {
         return teacher_name;
@@ -30,12 +30,12 @@ public class InsertTeacherRequest {
         this.email = email;
     }
 
-    public String getAccounnt() {
-        return accounnt;
+    public String getAccount() {
+        return account;
     }
 
-    public void setAccounnt(String accounnt) {
-        this.accounnt = accounnt;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
 }

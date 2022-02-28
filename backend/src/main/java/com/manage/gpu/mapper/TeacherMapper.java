@@ -36,7 +36,7 @@ public interface TeacherMapper {
      * @param teacher
      * @return
      */
-    @Select("select t.id from teacher t where t.accounnt=#{account} and password=#{password}")
+    @Select("select t.id from teacher t where t.account=#{account} and password=#{password}")
     Long login(Teacher teacher);
 
     /**

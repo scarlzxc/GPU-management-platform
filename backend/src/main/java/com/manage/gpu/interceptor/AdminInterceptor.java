@@ -7,6 +7,7 @@ import com.manage.gpu.entity.UserInfoDO;
 import com.manage.gpu.utils.JWTUtil;
 import com.manage.gpu.utils.LocalUser;
 import com.manage.gpu.utils.RedisUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 
 public class AdminInterceptor implements HandlerInterceptor {
+    @Autowired
+    RedisUtils redisUtils;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HashMap<String, Object> map = new HashMap<>();
@@ -23,7 +26,6 @@ public class AdminInterceptor implements HandlerInterceptor {
             //验证令牌
             JWTUtil.verify(token);
             UserInfoDO user = JWTUtil.getUser(token);
-            RedisUtils redisUtils = new RedisUtils();
             boolean b = (boolean) redisUtils.hget("jwt",token);
             if(user.getType().equals("student")||user.getType().equals("teacher")){
                 //确定身份

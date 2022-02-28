@@ -15,6 +15,7 @@ public interface ApplicationMapper {
 
     @Select("SELECT * FROM application WHERE id=#{id}")
     Application findApplicationById(@Param("id")  Long id);
+
     @Select("SELECT * FROM application WHERE gpu_id=#{gpu_id}")
     Application findApplicationBygpuId(@Param("gpu_id")  Long gpu_id);
 
@@ -34,7 +35,7 @@ public interface ApplicationMapper {
      * @param application
      * @return
      */
-    @Update("UPDATE application SET name=#{name},reason=#{reason},status=#{status},end_time=#{end_time},start_time=#{start_time}WHERE id=#{id}")
+    @Update("UPDATE application SET name=#{name},reason=#{reason},status=#{status},end_time=#{end_time},start_time=#{start_time},gpu_id = #{gpu_id} WHERE id=#{id}")
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
     Integer updateApplication(Application application);
     /**

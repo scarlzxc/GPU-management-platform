@@ -73,7 +73,7 @@ public class AdminController {
     public Result getallteacher(){
         return teacherService.findallTeacher();
     }
-    @PostMapping("/deletteacher")
+    @PostMapping("/deleteteacher")
     public Result deletteacher(@RequestParam("id") Long id){
         return teacherService.deleteteacher(id);
     }
@@ -97,6 +97,8 @@ public class AdminController {
     public Result deletegpu(@RequestParam("id") Long id){
         return gpuService.deletegpu(id);
     }
+
+
     //查看所有表单
     @PostMapping("/getallapplication")
     public Result getallapplication(){
@@ -107,12 +109,17 @@ public class AdminController {
     public Result listtogive(){
         return applicationService.findapplicationtogive();
     }
+    //查看空闲gpu
+    @PostMapping("/availablegpu")
+    public Result listavailable(){
+        return gpuService.findavailablegpu();
+    }
     //分配资源
     @PostMapping("/givegpu")
-    public Result givegpu(ApplicationRequest applicationRequest){
+    public Result givegpu(@RequestBody ApplicationRequest applicationRequest){
         return applicationService.update(applicationRequest);
     }
-
+    
 
 
 }

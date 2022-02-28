@@ -13,6 +13,8 @@ import java.util.List;
 public class TeacherService {
     @Autowired
     TeacherMapper teacherMapper;
+    @Autowired
+    RedisUtils redisUtils;
     /**
      * 登录
      */
@@ -36,7 +38,7 @@ public class TeacherService {
                 String token = JWTUtil.getToken(paylod);
                 result.setToken(token);
                 //放入redis
-                RedisUtils redisUtils = new RedisUtils();
+
                 redisUtils.hset("jwt",token,true);
             }
 
@@ -80,12 +82,12 @@ public class TeacherService {
                 result.setMsg("用户已存在");
             }else {
 
-
+                t = new Teacher();
                 t.setTeacher_name(insertTeacherRequest.getTeacher_name());
                 t.setPassword(insertTeacherRequest.getPassword());
                 t.setEmail(insertTeacherRequest.getEmail());
 
-                t.setAccount(insertTeacherRequest.getAccounnt());
+                t.setAccount(insertTeacherRequest.getAccount());
                 int res = teacherMapper.insertTeacher(t);
                 if(res!=0){
                     result.setMsg("录入成功");
@@ -108,10 +110,9 @@ public class TeacherService {
         result.setSuccess(false);
         result.setDetail(null);
         try {
-            //修改自己信息的时候，姓名没法更改，前端传过来
-            Teacher t = teacherMapper.findTeacherByName(updateTeacherRequest.getTeacher_name());
+            Teacher t = teacherMapper.findTeacherById(updateTeacherRequest.getId());
             t.setPassword(updateTeacherRequest.getPassword());
-            t.setAccount(updateTeacherRequest.getAccounnt());
+            t.setAccount(updateTeacherRequest.getAccount());
             t.setEmail(updateTeacherRequest.getEmail());
             int res = teacherMapper.updateTeacher(t);
             if(res!=0){

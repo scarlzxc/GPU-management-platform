@@ -1,10 +1,28 @@
 package com.manage.gpu.entity;
 
 public class UpdateAdminRequest {
-    private String accounnt;
+    private String account;
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
     private String password;
     private String email;
     private String admin_name;
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getAdmin_name() {
         return admin_name;
@@ -14,13 +32,6 @@ public class UpdateAdminRequest {
         this.admin_name = admin_name;
     }
 
-    public String getAccounnt() {
-        return accounnt;
-    }
-
-    public void setAccounnt(String accounnt) {
-        this.accounnt = accounnt;
-    }
 
     public String getPassword() {
         return password;

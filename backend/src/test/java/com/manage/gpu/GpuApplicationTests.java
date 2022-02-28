@@ -1,11 +1,8 @@
 package com.manage.gpu;
 
-import com.manage.gpu.entity.Application;
-import com.manage.gpu.entity.MailVo;
-import com.manage.gpu.entity.Result;
-import com.manage.gpu.entity.Student;
-import com.manage.gpu.mapper.ApplicationMapper;
-import com.manage.gpu.mapper.StudentMapper;
+import com.manage.gpu.entity.*;
+import com.manage.gpu.mapper.*;
+import com.manage.gpu.service.GpuService;
 import com.manage.gpu.service.MailService;
 import com.manage.gpu.utils.RedisUtils;
 import org.junit.jupiter.api.Test;
@@ -30,9 +27,17 @@ class GpuApplicationTests {
     RedisUtils redisUtils;
     @Autowired
     ApplicationMapper applicationMapper;
+    @Autowired
+    TeacherMapper teacherMapper;
+    @Autowired
+    AdminMapper adminMapper;
+    @Autowired
+    GpuMapper gpuMapper;
     @Test
     public void test1() {
-        System.out.println("123");
+       Student s = studentMapper.findStudentById(4L);
+       s.setTeacher_id(3L);
+       studentMapper.updateStudent(s);
     }
 
     @Test
@@ -40,17 +45,18 @@ class GpuApplicationTests {
 
         redisUtils.hset("123","111","234");
         System.out.println(redisUtils.hget("123","111"));
+        boolean b = (boolean) redisUtils.hget("jwt","eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXBlIjoic3R1ZGVudCIsImV4cCI6MTY0NjYyNzE1MH0.87J9qvJvML4Ak2P6FLAdzt4pbnVnIpF6Fm4Vvaq4Jdc");
+        if(b){
+            System.out.println("11111");
+        }
     }
     @Test
     public  void test3(){
-        MailVo mv = new MailVo();
-        mv.setSubject("test");
-        mv.setId("真帅");
-        mv.setTo("10175102121@stu.ecnu.edu.cn");
-        mv.setText("xzx真帅啊");
-        mailService.sendMimeMail(mv);
-        System.out.println("123");
-
+      Teacher t = new Teacher();
+      t.setAccount("111");
+      t.setEmail("123@qq.com");
+      t.setPassword("111");
+      teacherMapper.insertTeacher(t);
     }
     @Test
     public  void test4(){

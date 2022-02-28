@@ -27,6 +27,8 @@ public class StudentService {
     StudentMapper studentMapper;
     @Autowired
     TeacherMapper teacherMapper;
+    @Autowired
+    RedisUtils redisUtils;
     /**
      * 登录
      */
@@ -50,7 +52,6 @@ public class StudentService {
                 String token = JWTUtil.getToken(paylod);
                 result.setToken(token);
                 //放入redis
-                RedisUtils redisUtils = new RedisUtils();
                 redisUtils.hset("jwt",token,true);
             }
 
@@ -72,7 +73,7 @@ public class StudentService {
         result.setSuccess(false);
         result.setDetail(null);
         try {
-                RedisUtils redisUtils = new RedisUtils();
+
                 redisUtils.hdel("jwt",token);
                 result.setMsg("退出成功");
         }catch (Exception e){
@@ -95,7 +96,7 @@ public class StudentService {
             if(s!=null){
                 result.setMsg("用户已存在");
             }else {
-
+                s = new Student();
                 s.setStudent_name(insertStudentRequest.getStudent_name());
                 s.setPassword(insertStudentRequest.getPassword());
                 s.setEmail(insertStudentRequest.getEmail());
@@ -123,12 +124,13 @@ public class StudentService {
         result.setSuccess(false);
         result.setDetail(null);
         try {
-            //学生修改自己信息的时候，姓名没法更改，前端传过来
-            Student s = studentMapper.findStudentByName(updateStudentRequest.getStudent_name());
+
+            Student s = studentMapper.findStudentById(updateStudentRequest.getId());
             s.setPassword(updateStudentRequest.getPassword());
             s.setAccount(updateStudentRequest.getAccount());
             s.setEmail(updateStudentRequest.getEmail());
             int res = studentMapper.updateStudent(s);
+            s = studentMapper.findStudentById(updateStudentRequest.getId());
             if(res!=0){
                 result.setMsg("修改成功");
                 result.setSuccess(true);

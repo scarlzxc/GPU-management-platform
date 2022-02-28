@@ -8,6 +8,7 @@ import com.manage.gpu.utils.JWTUtil;
 import com.manage.gpu.utils.LocalUser;
 
 import com.manage.gpu.utils.RedisUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,6 +18,8 @@ import java.util.HashMap;
 
 
 public class TeacherInterceptor implements HandlerInterceptor {
+    @Autowired
+    RedisUtils redisUtils;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HashMap<String, Object> map = new HashMap<>();
@@ -26,8 +29,6 @@ public class TeacherInterceptor implements HandlerInterceptor {
             //验证令牌
             JWTUtil.verify(token);
             UserInfoDO user = JWTUtil.getUser(token);
-            LocalUser.USER.set(user);
-            RedisUtils redisUtils = new RedisUtils();
             boolean b = (boolean) redisUtils.hget("jwt",token);
             if(user.getType().equals("student")){
                 map.put("msg","没有权限");

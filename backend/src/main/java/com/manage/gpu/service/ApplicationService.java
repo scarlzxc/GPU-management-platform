@@ -40,6 +40,7 @@ public class ApplicationService {
             if(a!=null){
                 result.setMsg("不要重复申请");
             }else {
+                a = new Application();
                 a.setName(applicationRequest.getName());
                 a.setReason(applicationRequest.getReason());
                 a.setStatus(applicationRequest.getStatus());
@@ -78,6 +79,7 @@ public class ApplicationService {
         result.setSuccess(false);
         result.setDetail(null);
         try {
+            System.out.println(applicationRequest.getGpu_id());
             Application a = applicationMapper.findApplicationById(applicationRequest.getId());
             if(applicationRequest.getGpu_id()!=null) a.setGpu_id(applicationRequest.getGpu_id());
             //修改状态

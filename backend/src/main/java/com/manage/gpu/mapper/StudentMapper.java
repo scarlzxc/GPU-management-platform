@@ -22,7 +22,7 @@ public interface StudentMapper {
      * @param student_name
      * @return
      */
-    @Select("select s.student_name,s.password from student s where s.student_name=#{student_name}")
+    @Select("select * from student s where s.student_name=#{student_name}")
     Student findStudentByName(@Param("student_name") String student_name);
 
 
@@ -39,7 +39,7 @@ public interface StudentMapper {
      * @param student
      * @return
      */
-    @Select("select s.id from student s where s.account=#{accounnt} and password=#{password}")
+    @Select("select s.id from student s where s.account=#{account} and password=#{password}")
     Long login(Student student);
 
     /**

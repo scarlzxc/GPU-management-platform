@@ -2,10 +2,18 @@ package com.manage.gpu.entity;
 
 public class Admin {
     private Long id;
-    private String accounnt;
+    private String account;
     private String password;
     private String email;
     private String admin_name;
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
 
     public String getAdmin_name() {
         return admin_name;
@@ -23,13 +31,6 @@ public class Admin {
         this.id = id;
     }
 
-    public String getAccounnt() {
-        return accounnt;
-    }
-
-    public void setAccounnt(String accounnt) {
-        this.accounnt = accounnt;
-    }
 
     public String getPassword() {
         return password;

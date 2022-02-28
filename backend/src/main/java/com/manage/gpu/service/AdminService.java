@@ -14,6 +14,8 @@ import java.util.List;
 public class AdminService {
     @Autowired
     AdminMapper adminMapper;
+    @Autowired
+    RedisUtils redisUtils;
     /**
      * 登录
      */
@@ -38,7 +40,7 @@ public class AdminService {
                 String token = JWTUtil.getToken(paylod);
                 result.setToken(token);
                 //放入redis
-                RedisUtils redisUtils = new RedisUtils();
+
                 redisUtils.hset("jwt",token,true);
             }
 
@@ -58,7 +60,6 @@ public class AdminService {
         result.setSuccess(false);
         result.setDetail(null);
         try {
-            RedisUtils redisUtils = new RedisUtils();
             redisUtils.hdel("jwt",token);
             result.setMsg("退出成功");
         }catch (Exception e){
@@ -83,9 +84,10 @@ public class AdminService {
             if(a!=null){
                 result.setMsg("管理员已存在");
             }else {
+                a = new Admin();
                 a.setPassword(insertAdminRequest.getPassword());
                 a.setEmail(insertAdminRequest.getEmail());
-                a.setAccounnt(insertAdminRequest.getAccounnt());
+                a.setAccount(insertAdminRequest.getAccount());
                 int res = adminMapper.insertAdmin(a);
                 if (res != 0) {
                     result.setMsg("录入成功");
@@ -108,9 +110,9 @@ public class AdminService {
         result.setSuccess(false);
         result.setDetail(null);
         try {
-            Admin a = adminMapper.findAdminByName(updateAdminRequest.getAdmin_name());
+            Admin a = adminMapper.findAdminById(updateAdminRequest.getId());
             a.setPassword(updateAdminRequest.getPassword());
-            a.setAccounnt(updateAdminRequest.getAccounnt());
+            a.setAccount(updateAdminRequest.getAccount());
             a.setEmail(updateAdminRequest.getEmail());
             int res = adminMapper.updateAdmin(a);
             if(res!=0){

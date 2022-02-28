@@ -56,7 +56,7 @@ public class GpuService {
         result.setSuccess(false);
         result.setDetail(null);
         try {
-            Gpu g = new Gpu();
+            Gpu g = gpuMapper.findGPUById(gpuRequest.getId());
             g.setCpu(gpuRequest.getCpu());
             g.setDisk(gpuRequest.getDisk());
             g.setGpu_resource(gpuRequest.getGpu_resource());
