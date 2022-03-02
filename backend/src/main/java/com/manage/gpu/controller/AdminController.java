@@ -119,7 +119,7 @@ public class AdminController {
     public Result givegpu(@RequestBody ApplicationRequest applicationRequest){
         return applicationService.update(applicationRequest);
     }
-    
+
 
 
 }

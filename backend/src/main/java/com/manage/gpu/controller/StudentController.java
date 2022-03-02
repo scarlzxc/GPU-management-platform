@@ -42,6 +42,10 @@ public class StudentController {
     public Result applyapplication(@RequestBody ApplicationRequest applicationRequest){
         return applicationService.insert(applicationRequest);
     }
-
+    //学生申请gpu
+    @GetMapping("/test")
+    public String test(){
+        return "test";
+    }
 
 }

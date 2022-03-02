@@ -95,6 +95,9 @@ public class ApplicationService {
                     //先发给第一个admin，后面再考虑发多个
                     mv.setTo(adminMapper.findAdminById(1L).getEmail());
                     mv.setText("请点击分配gpu"+"URL");
+                }else if(a.getStatus()==3){
+                    mv.setSubject("gpu申请请求被驳回");
+                    mv.setTo(studentMapper.findStudentByName(a.getName()).getEmail());
                 }else{
                     //管理员分配完
                     mv.setSubject("申请成功！请查看gpu信息");
