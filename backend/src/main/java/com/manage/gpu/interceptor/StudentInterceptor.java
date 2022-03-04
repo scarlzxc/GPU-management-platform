@@ -20,6 +20,9 @@ public class StudentInterceptor implements HandlerInterceptor {
     RedisUtils redisUtils;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        if ("OPTIONS".equals(request.getMethod().toUpperCase())) {
+            return true;
+        }
         HashMap<String, Object> map = new HashMap<>();
         //获取请求头中的令牌
         String token = request.getHeader("token");

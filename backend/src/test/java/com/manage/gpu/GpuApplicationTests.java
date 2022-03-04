@@ -53,10 +53,26 @@ class GpuApplicationTests {
     @Test
     public  void test3(){
       Teacher t = new Teacher();
-      t.setAccount("111");
-      t.setEmail("123@qq.com");
-      t.setPassword("111");
+      t.setAccount("3333");
+      t.setEmail("953582049@qq.com");
+      t.setPassword("111222");
+      t.setAccount("teachertest3");
+      t.setTeacher_name("teachertest3");
       teacherMapper.insertTeacher(t);
+    }
+    @Test
+    public  void test7(){
+      Student s = new Student();
+      s.setStudent_name("stutest");
+      s.setAccount("stutest1");
+      s.setTeacher_id(7L);
+      s.setEmail("953582049@qq.com");
+      s.setPassword("111");
+      studentMapper.insertStudent(s);
+    }
+    @Test
+    public  void test8(){
+
     }
     @Test
     public  void test4(){
