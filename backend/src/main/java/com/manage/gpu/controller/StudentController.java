@@ -32,7 +32,7 @@ public class StudentController {
         String token = request.getHeader("token");
         return studentService.logout(token);
     }
-    //学生和管理员更新学生信息
+    //学生更新学生信息
     @PostMapping("/update")
     public Result update(@RequestBody UpdateStudentRequest updateStudentRequest){
         return studentService.update(updateStudentRequest);

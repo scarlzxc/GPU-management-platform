@@ -1,9 +1,6 @@
 package com.manage.gpu.service;
 
-import com.manage.gpu.entity.InsertStudentRequest;
-import com.manage.gpu.entity.Result;
-import com.manage.gpu.entity.Student;
-import com.manage.gpu.entity.UpdateStudentRequest;
+import com.manage.gpu.entity.*;
 import com.manage.gpu.mapper.StudentMapper;
 import com.manage.gpu.mapper.TeacherMapper;
 import com.manage.gpu.utils.JWTUtil;
@@ -11,9 +8,9 @@ import com.manage.gpu.utils.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author zxc
@@ -144,6 +141,34 @@ public class StudentService {
         return result;
     }
 
+    public Result adminupdate(Adminupdatestudent adminupdatestudent){
+        Result result=new Result();
+        result.setSuccess(false);
+        result.setDetail(null);
+        try {
+            Student s = studentMapper.findStudentById(adminupdatestudent.getId());
+            s.setPassword(adminupdatestudent.getPassword());
+            s.setAccount(adminupdatestudent.getAccount());
+            s.setEmail(adminupdatestudent.getEmail());
+            s.setStudent_name(adminupdatestudent.getStudent_name());
+            s.setTeacher_id(teacherMapper.findTeacherId(adminupdatestudent.getTeacher_name()));
+            int res = studentMapper.updateStudent(s);
+            s = studentMapper.findStudentById(adminupdatestudent.getId());
+            if(res!=0){
+                result.setMsg("修改成功");
+                result.setSuccess(true);
+            }
+            result.setDetail(s);
+
+        }catch (Exception e){
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+
+
     /**
      * 查看所有学生
      * @return
@@ -154,7 +179,18 @@ public class StudentService {
         result.setDetail(null);
         try {
             List<Student> l = studentMapper.findAllStudent();
-            result.setDetail(l);
+            List<StudentListInfo> l2 =new ArrayList<>();
+            for(Student s: l){
+                StudentListInfo s2 = new StudentListInfo();
+                s2.setId(s.getId());
+                s2.setStudent_name(s.getStudent_name());
+                s2.setAccount(s.getAccount());
+                s2.setPassword(s.getPassword());
+                s2.setEmail(s.getEmail());
+                s2.setTeacher_name(teacherMapper.findTeacherById(s.getTeacher_id()).getTeacher_name());
+                l2.add(s2);
+            }
+            result.setDetail(l2);
             result.setSuccess(true);
 
         }catch (Exception e){

@@ -63,6 +63,10 @@ public class AdminController {
     public Result deletestudent(@RequestParam("id") Long id){
         return studentService.deleteStudent(id);
     }
+    @PostMapping("/updatestudent")
+    public Result updatestudent(@RequestBody Adminupdatestudent adminupdatestudent){
+        return studentService.adminupdate(adminupdatestudent);
+    }
 
     //老师
     @PostMapping("/insertteacher")
